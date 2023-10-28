@@ -1,0 +1,28 @@
+<!-- splash.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Splash Screen</title>
+  <!-- Menyertakan file CSS dari folder static -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='splash.css') }}">
+</head>
+
+<body>
+  <div id="splash-container">
+    <div id="splash-content">
+      <!-- Menyertakan gambar dari folder static -->
+      <img src="{{ url_for('static', filename='Penipuan.png') }}" alt="Logo" id="splash-logo"
+        style="width: 500px; height: auto;">
+      <p>Loading...</p>
+    </div>
+  </div>
+  <script>
+    setTimeout(function () {
+      window.location.href = "/index"; // Ganti dengan rute halaman utama Anda ("/")
+    }, 3000); // 3000ms (3 detik) sebelum mengarahkan ke halaman utama
+  </script>
+</body>
+
+</html>
