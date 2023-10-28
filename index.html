@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Prediksi Penipuan Kartu Kredit</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <header>
+    <h1>Prediksi Penipuan Kartu Kredit</h1>
+    <button id="aboutButton" onclick="window.location.href='/about'">Tentang Kami</button>
+    <button id="fraudPreventionButton" onclick="window.location.href='/fraud-prevention'">Saran Pencegahan
+      Penipuan</button>
+  </header>
+
+  <main>
+    <h2>Masukkan Atribut</h2>
+    <form id="creditCardForm" method="POST">
+      <div class="form-group">
+        <label for="CUST_ID">CUST_ID:</label>
+        <input type="text" id="CUST_ID" name="CUST_ID" required value="{{ form_values.CUST_ID }}">
+      </div>
+      <div class="form-group">
+        <label for="BALANCE">BALANCE:</label>
+        <input type="text" id="BALANCE" name="BALANCE" required value="{{ form_values.BALANCE }}">
+      </div>
+      <div class="form-group">
+        <label for="BALANCE_FREQUENCY">BALANCE_FREQUENCY:</label>
+        <input type="text" id="BALANCE_FREQUENCY" name="BALANCE_FREQUENCY" required
+          value="{{ form_values.BALANCE_FREQUENCY }}">
+      </div>
+      <div class="form-group">
+        <label for="PURCHASES">PURCHASES:</label>
+        <input type="text" id="PURCHASES" name="PURCHASES" required value="{{ form_values.PURCHASES }}">
+      </div>
+      <div class="form-group">
+        <label for="ONEOFF_PURCHASES">ONEOFF_PURCHASES:</label>
+        <input type="text" id="ONEOFF_PURCHASES" name="ONEOFF_PURCHASES" required
+          value="{{ form_values.ONEOFF_PURCHASES }}">
+      </div>
+      <div class="form-group">
+        <label for="INSTALLMENTS_PURCHASES">INSTALLMENTS_PURCHASES:</label>
+        <input type="text" id="INSTALLMENTS_PURCHASES" name="INSTALLMENTS_PURCHASES" required
+          value="{{ form_values.INSTALLMENTS_PURCHASES }}">
+      </div>
+      <div class="form-group">
+        <label for="CASH_ADVANCE">CASH_ADVANCE:</label>
+        <input type="text" id="CASH_ADVANCE" name="CASH_ADVANCE" required value="{{ form_values.CASH_ADVANCE }}">
+      </div>
+      <div class="form-group">
+        <label for="PURCHASES_FREQUENCY">PURCHASES_FREQUENCY:</label>
+        <input type="text" id="PURCHASES_FREQUENCY" name="PURCHASES_FREQUENCY" required
+          value="{{ form_values.PURCHASES_FREQUENCY }}">
+      </div>
+      <div class="form-group">
+        <label for="ONEOFF_PURCHASES_FREQUENCY">ONEOFF_PURCHASES_FREQUENCY:</label>
+        <input type="text" id="ONEOFF_PURCHASES_FREQUENCY" name="ONEOFF_PURCHASES_FREQUENCY" required
+          value="{{ form_values.ONEOFF_PURCHASES_FREQUENCY }}">
+      </div>
+      <div class="form-group">
+        <label for="PURCHASES_INSTALLMENTS_FREQUENCY">PURCHASES_INSTALLMENTS_FREQUENCY:</label>
+        <input type="text" id="PURCHASES_INSTALLMENTS_FREQUENCY" name="PURCHASES_INSTALLMENTS_FREQUENCY" required
+          value="{{ form_values.PURCHASES_INSTALLMENTS_FREQUENCY }}">
+      </div>
+      <div class="form-group">
+        <label for="CASH_ADVANCE_FREQUENCY">CASH_ADVANCE_FREQUENCY:</label>
+        <input type="text" id="CASH_ADVANCE_FREQUENCY" name="CASH_ADVANCE_FREQUENCY" required
+          value="{{ form_values.CASH_ADVANCE_FREQUENCY }}">
+      </div>
+      <div class="form-group">
+        <label for="CASH_ADVANCE_TRX">CASH_ADVANCE_TRX:</label>
+        <input type="text" id="CASH_ADVANCE_TRX" name="CASH_ADVANCE_TRX" required
+          value="{{ form_values.CASH_ADVANCE_TRX }}">
+      </div>
+      <div class="form-group">
+        <label for="PURCHASES_TRX">PURCHASES_TRX:</label>
+        <input type="text" id="PURCHASES_TRX" name="PURCHASES_TRX" required value="{{ form_values.PURCHASES_TRX }}">
+      </div>
+      <div class="form-group">
+        <label for="CREDIT_LIMIT">CREDIT_LIMIT:</label>
+        <input type="text" id="CREDIT_LIMIT" name="CREDIT_LIMIT" required value="{{ form_values.CREDIT_LIMIT }}">
+      </div>
+      <div class="form-group">
+        <label for="PAYMENTS">PAYMENTS:</label>
+        <input type="text" id="PAYMENTS" name="PAYMENTS" required value="{{ form_values.PAYMENTS }}">
+      </div>
+      <div class="form-group">
+        <label for="MINIMUM_PAYMENTS">MINIMUM_PAYMENTS:</label>
+        <input type="text" id="MINIMUM_PAYMENTS" name="MINIMUM_PAYMENTS" required
+          value="{{ form_values.MINIMUM_PAYMENTS }}">
+      </div>
+      <div class="form-group">
+        <label for="PRC_FULL_PAYMENT">PRC_FULL_PAYMENT:</label>
+        <input type="text" id="PRC_FULL_PAYMENT" name="PRC_FULL_PAYMENT" required
+          value="{{ form_values.PRC_FULL_PAYMENT }}">
+      </div>
+      <div class="form-group">
+        <label for="TENURE">TENURE:</label>
+        <input type="text" id="TENURE" name="TENURE" required value="{{ form_values.TENURE }}">
+      </div>
+
+      <button type="submit" id="predictButton">Prediksi</button>
+      <button type="reset" id="resetButton">Reset</button>
+
+    </form>
+
+    <div id="predictionResult">
+      <p id="predictionLabel">
+        {% if prediction %}
+        Hasil Prediksi: <span id="predictionValue">{{ prediction }}</span>
+        <br>
+        <br>
+        Hasil Prediksi Dari Data Yang Anda Masukkan:
+      <ul>
+        {% for key, value in form_values.items() %}
+        <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if error %}
+      {{ error }}
+      {% endif %}
+      </p>
+
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2023 Prediksi Penipuan Kartu Kredit</p>
+  </footer>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
